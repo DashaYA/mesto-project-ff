@@ -8,7 +8,7 @@ const cardContainer = document.querySelector('.places__list');
 
 // @todo: Функция создания карточки
 
-function addCard(card, deleteCard) {
+function createCard(card, deleteCard) {
     //содержимое шаблона нужно клонировать
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     //добавила название и картинку
@@ -31,6 +31,6 @@ function deleteCard(cardElement) {
 // @todo: Вывести карточки на страницу
 
 initialCards.forEach(card => {
-    const cardElement = addCard(card, deleteCard);
+    const cardElement = createCard(card, deleteCard);
     cardContainer.append(cardElement);
 });
