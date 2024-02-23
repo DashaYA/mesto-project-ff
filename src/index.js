@@ -1,18 +1,24 @@
 import './pages/index.css'; // добавьте импорт главного файла стилей 
 import { initialCards } from "./scripts/cards";
-import { openModal, closeModal } from './components/modal';
+import { openModal, closeModal, handleOutside } from './components/modal';
 import { createCard, deleteCard, likeActive } from './components/card';
 
 
 // @todo: DOM узлы, место вставки карточек, Список карточек
 const cardContainer = document.querySelector('.places__list');
-
+//закрытие модальных окон через крестик и оверлей
+const buttonCloseList = document.querySelectorAll('.popup__close');
+buttonCloseList.forEach(btn => {
+    const popup = btn.closest('.popup');
+    btn.addEventListener('click', () => closeModal(popup)); 
+    popup.addEventListener('mousedown', handleOutside);
+});
 
 //Редактирование имени и информации о себе
 
 const popupEdit = document.querySelector(".popup_type_edit");
 const profileEditButton = document.querySelector('.profile__edit-button');
-const PopupCloseEdit = popupEdit.querySelector(".popup__close");
+////////////////////////////const popupCloseEdit = popupEdit.querySelector(".popup__close");
 // Находим форму в DOM
 const formElementEdit = document.querySelector(".popup__form"); 
 // Находим поля формы в DOM
@@ -42,7 +48,7 @@ profileEditButton.addEventListener('click',  () => {
 	openModal(popupEdit);
 });
 // кнопки закрытия
-PopupCloseEdit.addEventListener("click", () => closeModal(popupEdit));
+////////////////////////////popupCloseEdit.addEventListener("click", () => closeModal(popupEdit));
 
 //Форма добавления карточки
 
@@ -50,7 +56,7 @@ const popupNewCard = document.querySelector(".popup_type_new-card");
 const formElementCard = document.querySelector('.popup__form[name="new-place"]');
 const photoTitleInput = formElementCard.querySelector('.popup__input_type_card-name');
 const photoURLInput = formElementCard.querySelector('.popup__input_type_url');
-const PopupCloseCard = popupNewCard.querySelector(".popup__close");
+////////////////////////////const popupCloseCard = popupNewCard.querySelector(".popup__close");
 const profileAddButton = document.querySelector('.profile__add-button');
 
 
@@ -72,7 +78,7 @@ formElementCard.addEventListener('submit', handleFormAddSubmit);
 //Отслеживание клика по добавлению карточки
 profileAddButton.addEventListener("click", () => openModal(popupNewCard));
 // кнопки закрытия
-PopupCloseCard.addEventListener("click", () => closeModal(popupNewCard))
+////////////////////////////popupCloseCard.addEventListener("click", () => closeModal(popupNewCard))
 
 
 
@@ -81,7 +87,7 @@ PopupCloseCard.addEventListener("click", () => closeModal(popupNewCard))
 const popupTypeImage = document.querySelector(".popup_type_image");
 const popupImgage = popupTypeImage.querySelector(".popup__image");
 const cardCaption = popupTypeImage.querySelector(".popup__caption");
-const popupCloseImage = popupTypeImage.querySelector(".popup__close");
+////////////////////////////const popupCloseImage = popupTypeImage.querySelector(".popup__close");
 
 function clikOpenImage(link, caption) {
     popupImgage.src = link;
@@ -90,7 +96,7 @@ function clikOpenImage(link, caption) {
     openModal(popupTypeImage);
 };
 // кнопки закрытия
-popupCloseImage.addEventListener("click", () => closeModal(popupTypeImage));
+////////////////////////////popupCloseImage.addEventListener("click", () => closeModal(popupTypeImage));
 
 // Вывести карточки на страницу
 

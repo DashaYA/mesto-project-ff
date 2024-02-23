@@ -9,18 +9,18 @@ export function createCard(card, deleteButton, likeActive, openImage) {
     cardImage.alt = 'фотография ' + card.name;
     cardTitle.textContent = card.name;
 
-    cardElement.querySelector('.card__delete-button').addEventListener('click', function () {
+    cardElement.querySelector('.card__delete-button').addEventListener('click', () => { 
       deleteButton(cardElement)});
     cardElement.querySelector('.card__like-button').addEventListener('click', likeActive);
-        cardImage.addEventListener('click', function () {
-      openImage(cardImage.src, cardTitle.textContent)});
+        cardImage.addEventListener('click', () => {
+      openImage(card.link, card.name)});
 
     return cardElement;
 };
 
 // @todo: Функция удаления карточки
-export function deleteCard(evt) {
-  evt.remove();
+export function deleteCard(cardElement) {
+  cardElement.remove();
 };
 
 //Лайк карточки
