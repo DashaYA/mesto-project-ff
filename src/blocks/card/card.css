@@ -12,4 +12,7 @@
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+  scale: 1;
+  transition: scale 0.3s linear;
 }
+
